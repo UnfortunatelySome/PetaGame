@@ -14,22 +14,24 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		transform.position = Vector3.MoveTowards (transform.position, gameController.playerPosition.position, moveSpeed);
-		//checkBlock ();
+		checkBlock ();
 	}
 	void checkBlock(){
 		RaycastHit hit;
-		if (Physics.Raycast (transform.position, -Vector3.up, out hit, 100.0f)) {
+		if (Physics.Raycast (raycastPosition.position, -Vector3.up, out hit, 100.0f)) {
 			if (hit.collider.gameObject.tag == "Block") {
 				Block block = hit.collider.gameObject.GetComponent<Block> ();
 				if (block.walkable) {
+						
 				} else {
-					SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
+					Debug.Log ("Level End V1");
 				}
 			} else {
-				SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
+				Debug.Log ("Level end V2");
 			}
+			Debug.Log (hit.collider.gameObject.name);
 		} else {
-			SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
+			Debug.Log ("Level end V3");
 		}
 	}
 }
