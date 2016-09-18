@@ -3,6 +3,7 @@ using System.Collections;
 
 public class GameController : MonoBehaviour {
 	public Position playerPosition;
+	public Position previousPosition; //If the player makes an invalid move, the character will snap back to previous position
 	public Position gamePosition;
 	public GameObject[] sectors;
 	public bool losing;
@@ -27,13 +28,21 @@ public class GameController : MonoBehaviour {
 			swipeDirection = input.swipe ();
 		}
 		if (swipeDirection == InputManager.swipes.down) {
+			previousPosition.position = playerPosition.position;
 			playerPosition.position = playerPosition.Behind ();
+			playerPosition.rotation = 180;
 		} else if (swipeDirection == InputManager.swipes.up) {
+			previousPosition.position = playerPosition.position;
 			playerPosition.position = playerPosition.Forward ();
+			playerPosition.rotation = 0;
 		} else if (swipeDirection == InputManager.swipes.right) {
+			previousPosition.position = playerPosition.position;
 			playerPosition.position = playerPosition.Right ();
+			playerPosition.rotation = 90;
 		} else if (swipeDirection == InputManager.swipes.left) {
+			previousPosition.position = playerPosition.position;
 			playerPosition.position = playerPosition.Left ();
+			playerPosition.rotation = 270;
 		}
 	}
 
@@ -46,6 +55,7 @@ public class GameController : MonoBehaviour {
 [System.Serializable]
 public class Position{
 	public Vector3 position;
+	public float rotation;
 	public Position(float x, float y, float z){
 		position.x = x - (x % 1);
 		position.y = y - (y % 1);

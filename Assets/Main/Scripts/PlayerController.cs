@@ -5,7 +5,9 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour {
 	public GameController gameController;
 	public float moveSpeed;
+	public float direction;
 	public Transform raycastPosition;
+	public Transform playerBody;
 	// Use this for initialization
 	void Start () {
 		gameController = gameObject.GetComponent<GameController> ();
@@ -14,6 +16,7 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		transform.position = Vector3.MoveTowards (transform.position, gameController.playerPosition.position, moveSpeed);
+		playerBody.eulerAngles = Vector3.MoveTowards (playerBody.eulerAngles,new Vector3(0, gameController.playerPosition.rotation, 0),50f);
 		checkBlock ();
 	}
 	void checkBlock(){
@@ -25,13 +28,16 @@ public class PlayerController : MonoBehaviour {
 						
 				} else {
 					Debug.Log ("Level End V1");
+					SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
 				}
 			} else {
 				Debug.Log ("Level end V2");
+				SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
 			}
 			Debug.Log (hit.collider.gameObject.name);
 		} else {
 			Debug.Log ("Level end V3");
+			SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
 		}
 	}
 }
