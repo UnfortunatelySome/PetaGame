@@ -8,16 +8,24 @@ public class PlayerController : MonoBehaviour {
 	public float direction;
 	public Transform raycastPosition;
 	public Transform playerBody;
+	public float playerHeight;
+	Animator animator;
 	// Use this for initialization
 	void Start () {
 		gameController = gameObject.GetComponent<GameController> ();
+		animator = gameObject.GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		transform.position = Vector3.MoveTowards (transform.position, gameController.playerPosition.position, moveSpeed);
 		playerBody.eulerAngles = Vector3.MoveTowards (playerBody.eulerAngles,new Vector3(0, gameController.playerPosition.rotation, 0),50f);
+		Vector3 temp = new Vector3 (playerBody.position.x, 0, playerBody.position.z);
+		if (temp == playerBody.position) {
+			animator.StopPlayback ();
+		}
 		checkBlock ();
+		playerBody.position= new Vector3(playerBody.position.x, playerHeight, playerBody.position.z);
 	}
 	void checkBlock(){
 		RaycastHit hit;
