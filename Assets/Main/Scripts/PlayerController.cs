@@ -59,4 +59,9 @@ public class PlayerController : MonoBehaviour {
 			SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
 		}
 	}
+	void OnTriggerEnter(Collider col){
+		if (col.tag == "Enemy") {
+			SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
+		}
+	}
 }

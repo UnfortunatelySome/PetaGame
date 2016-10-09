@@ -28,7 +28,8 @@ public class EnemyController : MonoBehaviour {
 				currentPosition++;
 			}
 		}
-		Vector3.MoveTowards (transform.position, waypoints [currentPosition].position.position, speed);
+		transform.LookAt (waypoints [currentPosition].position.position);
+		transform.position = Vector3.MoveTowards (transform.position, waypoints [currentPosition].position.position, speed);
 	}
 }
 
