@@ -13,7 +13,7 @@ public class AlternatingSpikes : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		
 	}
 	public IEnumerator alternateSpikes(){
 		bool i = true;

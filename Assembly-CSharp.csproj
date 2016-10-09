@@ -47,9 +47,11 @@
   <ItemGroup>
      <Compile Include="Assets\Main\Scripts\AlternatingSpikes.cs" />
      <Compile Include="Assets\Main\Scripts\Block.cs" />
+     <Compile Include="Assets\Main\Scripts\EnemyController.cs" />
      <Compile Include="Assets\Main\Scripts\GameController.cs" />
      <Compile Include="Assets\Main\Scripts\InputManager.cs" />
      <Compile Include="Assets\Main\Scripts\PlayerController.cs" />
+     <Compile Include="Assets\Main\Scripts\PositionRepo.cs" />
      <Compile Include="Assets\Main\Scripts\Sector.cs" />
      <None Include="Assets\Standard Assets\Prototyping\Shaders\WorldCoordDiffuse.shader" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />

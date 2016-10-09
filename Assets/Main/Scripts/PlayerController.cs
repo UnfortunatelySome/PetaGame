@@ -9,11 +9,13 @@ public class PlayerController : MonoBehaviour {
 	public Transform raycastPosition;
 	public Transform playerBody;
 	public float playerHeight;
+	PositionRepo tileRepo;
 	Animator animator;
 	// Use this for initialization
 	void Start () {
 		gameController = gameObject.GetComponent<GameController> ();
 		animator = gameObject.GetComponent<Animator>();
+		tileRepo = GameObject.Find ("GameController").GetComponent<PositionRepo> ();
 	}
 	
 	// Update is called once per frame
@@ -24,7 +26,9 @@ public class PlayerController : MonoBehaviour {
 		if (temp == playerBody.position) {
 			animator.StopPlayback ();
 		}
-		checkBlock ();
+		//checkBlock ();
+
+		testBlock();
 		playerBody.position= new Vector3(playerBody.position.x, playerHeight, playerBody.position.z);
 	}
 	void checkBlock(){
@@ -45,6 +49,13 @@ public class PlayerController : MonoBehaviour {
 			Debug.Log (hit.collider.gameObject.name);
 		} else {
 			Debug.Log ("Level end V3");
+			SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
+		}
+	}
+
+	void testBlock(){
+		Block block = tileRepo.blockAtPosition (gameController.playerPosition.position);
+		if (block.walkable == false) {
 			SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
 		}
 	}
